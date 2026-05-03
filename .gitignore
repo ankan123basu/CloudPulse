@@ -1,0 +1,36 @@
+# =============================================
+# CloudPulse .gitignore
+# =============================================
+
+# Compiled class files
+*.class
+
+# Maven build output
+target/
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+
+# Docker
+docker-compose.override.yml

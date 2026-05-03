@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  # =========================================
+  # CloudPulse Spring Boot Application
+  # =========================================
+  app:
+    build: .
+    container_name: cloudpulse-app
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - cloudpulse-network
+
+  # =========================================
+  # Jenkins CI/CD Server
+  # =========================================
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: cloudpulse-jenkins
+    ports:
+      - "8090:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - cloudpulse-network
+
+  # =========================================
+  # Prometheus Monitoring
+  # =========================================
+  prometheus:
+    image: prom/prometheus
+    container_name: cloudpulse-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - cloudpulse-network
+
+  # =========================================
+  # Grafana Dashboard
+  # =========================================
+  grafana:
+    image: grafana/grafana
+    container_name: cloudpulse-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      - prometheus
+    networks:
+      - cloudpulse-network
+
+volumes:
+  jenkins_home:
+
+networks:
+  cloudpulse-network:
+    driver: bridge

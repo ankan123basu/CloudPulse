@@ -1,0 +1,360 @@
+/* =============================================
+   CloudPulse Landing Page — Global Styles
+   ============================================= */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg-deep: #020817;
+  --bg-card: rgba(255,255,255,0.06);
+  --cyan: #38bdf8;
+  --violet: #818cf8;
+  --green: #4ade80;
+  --white: #f0f4ff;
+  --white-60: rgba(240,244,255,0.6);
+  --white-40: rgba(240,244,255,0.4);
+  --border: rgba(255,255,255,0.08);
+  --glow-cyan: 0 0 20px rgba(56,189,248,0.3);
+  --glow-green: 0 0 12px rgba(74,222,128,0.4);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-pill: 999px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: var(--bg-deep);
+  color: var(--white);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 4px; }
+
+/* Canvas */
+#bg-canvas {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 0; pointer-events: none;
+}
+
+/* Sections */
+section { position: relative; z-index: 1; }
+
+/* Glass Card */
+.glass {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+/* =============================================
+   HERO
+   ============================================= */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+.hero-badge {
+  display: inline-block;
+  padding: 6px 18px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  background: rgba(56,189,248,0.08);
+  font-size: 0.8rem;
+  color: var(--cyan);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.hero h1 {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+.hero h1 .gradient {
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero .subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  color: var(--white-60);
+  max-width: 600px;
+  margin-bottom: 2rem;
+}
+.tech-tags {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+.tech-tags span {
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  background: rgba(129,140,248,0.08);
+  font-size: 0.82rem;
+  color: var(--white-60);
+  transition: all 0.3s;
+}
+.tech-tags span:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  box-shadow: var(--glow-cyan);
+}
+.stat-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  max-width: 750px;
+  width: 100%;
+}
+.stat-card {
+  padding: 20px 16px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.stat-card:hover { transform: translateY(-4px); box-shadow: var(--glow-cyan); }
+.stat-card .value {
+  font-size: 1.6rem; font-weight: 700;
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.stat-card .label { font-size: 0.78rem; color: var(--white-40); margin-top: 4px; }
+
+/* =============================================
+   PIPELINE STRIP
+   ============================================= */
+.pipeline-section { padding: 4rem 2rem; overflow: hidden; }
+.pipeline-section h2 {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-bottom: 2.5rem;
+  color: var(--white);
+}
+.pipeline-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  max-width: 900px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+.pipe-node {
+  display: flex; flex-direction: column;
+  align-items: center;
+  padding: 18px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  backdrop-filter: blur(8px);
+  min-width: 120px;
+  text-align: center;
+  transition: all 0.3s;
+  position: relative;
+}
+.pipe-node.active { border-color: var(--cyan); box-shadow: var(--glow-cyan); }
+.pipe-node svg { width: 28px; height: 28px; margin-bottom: 8px; }
+.pipe-node .node-label { font-size: 0.82rem; font-weight: 600; }
+.pipe-node .node-sub { font-size: 0.68rem; color: var(--white-40); margin-top: 2px; }
+.pipe-connector {
+  width: 48px; height: 2px;
+  background: var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.pipe-connector .dot {
+  position: absolute; top: -3px; left: -8px;
+  width: 8px; height: 8px;
+  background: var(--cyan);
+  border-radius: 50%;
+  box-shadow: var(--glow-cyan);
+  animation: travelDot 2s linear infinite;
+}
+@keyframes travelDot { 0% { left: -8px; } 100% { left: 48px; } }
+
+/* =============================================
+   TIMELINE — "What happens when you git push?"
+   ============================================= */
+.timeline-section { padding: 5rem 2rem; max-width: 700px; margin: 0 auto; }
+.timeline-section h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 3rem;
+}
+.timeline-section h2 code {
+  background: rgba(56,189,248,0.12);
+  padding: 2px 10px;
+  border-radius: 6px;
+  color: var(--cyan);
+  font-size: 1.4rem;
+}
+.tl-item {
+  display: flex; gap: 20px;
+  margin-bottom: 2rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.tl-item.visible { opacity: 1; transform: translateY(0); }
+.tl-num {
+  flex-shrink: 0;
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  font-weight: 700; font-size: 0.9rem;
+}
+.tl-card {
+  flex: 1;
+  padding: 18px 20px;
+}
+.tl-card .tl-title { font-weight: 600; font-size: 1rem; margin-bottom: 4px; }
+.tl-card .tl-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(56,189,248,0.1);
+  color: var(--cyan);
+  font-size: 0.7rem;
+  margin-bottom: 6px;
+}
+.tl-card .tl-desc { font-size: 0.82rem; color: var(--white-60); }
+
+/* =============================================
+   3D TILT CARDS — Live Metrics Mockup
+   ============================================= */
+.metrics-section { padding: 5rem 2rem; }
+.metrics-section h2 { text-align: center; font-size: 1.8rem; margin-bottom: 2.5rem; }
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.metric-card {
+  padding: 28px 24px;
+  transition: transform 0.15s ease;
+  transform-style: preserve-3d;
+  perspective: 800px;
+  cursor: default;
+}
+.metric-card h3 {
+  font-size: 1rem; margin-bottom: 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+.metric-card h3 .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: var(--glow-green);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.3); }
+}
+.check-list { list-style: none; }
+.check-list li {
+  padding: 6px 0;
+  font-size: 0.85rem;
+  color: var(--white-60);
+  display: flex; align-items: center; gap: 8px;
+}
+.check-list li::before {
+  content: '✓';
+  color: var(--green);
+  font-weight: 700;
+}
+.mini-pipeline {
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+}
+.mini-pipeline .mp-node {
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: rgba(56,189,248,0.1);
+  font-size: 0.72rem;
+  color: var(--cyan);
+  border: 1px solid rgba(56,189,248,0.2);
+}
+.mini-pipeline .mp-arrow { color: var(--white-40); font-size: 0.8rem; }
+#healthChart { width: 100%; height: 100px; border-radius: 8px; margin-top: 8px; }
+
+/* =============================================
+   TECH STACK GRID
+   ============================================= */
+.stack-section { padding: 5rem 2rem; }
+.stack-section h2 { text-align: center; font-size: 1.8rem; margin-bottom: 2.5rem; }
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  max-width: 750px;
+  margin: 0 auto;
+}
+.stack-card {
+  padding: 24px 20px;
+  text-align: center;
+  transition: all 0.3s;
+  cursor: default;
+}
+.stack-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--cyan);
+  box-shadow: var(--glow-cyan);
+}
+.stack-card .icon {
+  font-size: 2rem; font-weight: 800;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.stack-card .tool-name { font-weight: 600; font-size: 0.95rem; }
+.stack-card .tool-role { font-size: 0.75rem; color: var(--white-40); margin-top: 4px; }
+
+/* =============================================
+   FOOTER
+   ============================================= */
+footer {
+  padding: 3rem 2rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+footer .footer-title { font-size: 0.95rem; color: var(--white-60); margin-bottom: 8px; }
+footer .footer-tools { font-size: 0.75rem; color: var(--white-40); margin-bottom: 16px; }
+footer .status {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.78rem; color: var(--green);
+}
+footer .status .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--green);
+  box-shadow: var(--glow-green);
+  animation: pulse 2s infinite;
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 640px) {
+  .stat-cards { grid-template-columns: repeat(2, 1fr); }
+  .pipeline-strip { flex-direction: column; }
+  .pipe-connector { width: 2px; height: 32px; }
+  .pipe-connector .dot { animation: travelDotV 2s linear infinite; top: -8px; left: -3px; }
+  @keyframes travelDotV { 0% { top: -8px; } 100% { top: 32px; } }
+  .metrics-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,28 @@
+# Build artifacts
+target/
+*.jar
+*.class
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+*.swp
+
+# Git
+.git/
+.gitignore
+
+# Docker
+.dockerignore
+
+# Landing page (not needed in app image)
+landing/
+
+# Docs
+README.md
+*.md
+
+# CI/CD configs (not needed in app image)
+.github/
+Jenkinsfile

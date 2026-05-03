@@ -1,0 +1,16 @@
+# =============================================
+# Prometheus Configuration for CloudPulse
+# =============================================
+# Scrapes JVM metrics from the Spring Boot app
+# every 15 seconds via the Actuator endpoint.
+
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'cloudpulse-app'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['app:8080']
+        labels:
+          application: 'CloudPulse'

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CloudPulse — Automated DevOps Pipeline with Live Observability</title>
+  <meta name="description" content="CloudPulse: A production-grade CI/CD pipeline using Docker, Maven, GitHub Actions, Jenkins, Prometheus & Grafana with JUnit Testing.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Three.js 3D Background Canvas -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero" id="hero">
+    <span class="hero-badge">INT332 · DevOps Engineering</span>
+    <h1>Cloud<span class="gradient">Pulse</span></h1>
+    <p class="subtitle">Push code. Watch it build. See it breathe.</p>
+    <div class="tech-tags">
+      <span>Docker</span><span>Maven</span><span>GitHub Actions</span>
+      <span>Jenkins</span><span>Prometheus</span><span>Grafana</span>
+    </div>
+    <div class="stat-cards">
+      <div class="stat-card glass">
+        <div class="value">4</div><div class="label">Containers</div>
+      </div>
+      <div class="stat-card glass">
+        <div class="value">3/3</div><div class="label">Tests Pass</div>
+      </div>
+      <div class="stat-card glass">
+        <div class="value">∞</div><div class="label">Auto Deploy</div>
+      </div>
+      <div class="stat-card glass">
+        <div class="value">24/7</div><div class="label">Monitoring</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PIPELINE FLOW ========== -->
+  <section class="pipeline-section" id="pipeline">
+    <h2>Pipeline Flow</h2>
+    <div class="pipeline-strip">
+      <div class="pipe-node active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        <div class="node-label">GitHub</div>
+        <div class="node-sub">git push</div>
+      </div>
+      <div class="pipe-connector"><div class="dot"></div></div>
+      <div class="pipe-node">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        <div class="node-label">Actions</div>
+        <div class="node-sub">Build & Test</div>
+      </div>
+      <div class="pipe-connector"><div class="dot" style="animation-delay:-0.5s"></div></div>
+      <div class="pipe-node">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 12h.01M8 12h.01M16 12h.01"/></svg>
+        <div class="node-label">Docker</div>
+        <div class="node-sub">Containerize</div>
+      </div>
+      <div class="pipe-connector"><div class="dot" style="animation-delay:-1s"></div></div>
+      <div class="pipe-node">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        <div class="node-label">Jenkins</div>
+        <div class="node-sub">Deploy</div>
+      </div>
+      <div class="pipe-connector"><div class="dot" style="animation-delay:-1.5s"></div></div>
+      <div class="pipe-node">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        <div class="node-label">Live</div>
+        <div class="node-sub">Monitor</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TIMELINE ========== -->
+  <section class="timeline-section" id="timeline">
+    <h2>What happens when you <code>git push</code>?</h2>
+    <div class="tl-item"><div class="tl-num">1</div><div class="tl-card glass"><span class="tl-badge">GitHub</span><div class="tl-title">Code Pushed to Repository</div><div class="tl-desc">Your commit triggers the entire pipeline automatically via webhook.</div></div></div>
+    <div class="tl-item"><div class="tl-num">2</div><div class="tl-card glass"><span class="tl-badge">GitHub Actions</span><div class="tl-title">Build & Test in Cloud</div><div class="tl-desc">Ubuntu runner spins up, runs mvn clean package and all JUnit tests.</div></div></div>
+    <div class="tl-item"><div class="tl-num">3</div><div class="tl-card glass"><span class="tl-badge">JUnit 5</span><div class="tl-title">3/3 Tests Pass</div><div class="tl-desc">Unit tests validate API responses, JSON structure, and health endpoint.</div></div></div>
+    <div class="tl-item"><div class="tl-num">4</div><div class="tl-card glass"><span class="tl-badge">Docker</span><div class="tl-title">Image Built & Pushed</div><div class="tl-desc">Multi-stage Dockerfile builds JAR, creates lightweight image, pushes to Docker Hub.</div></div></div>
+    <div class="tl-item"><div class="tl-num">5</div><div class="tl-card glass"><span class="tl-badge">Jenkins</span><div class="tl-title">Container Redeployed</div><div class="tl-desc">Jenkins pulls the new image, stops old container, deploys the updated version.</div></div></div>
+    <div class="tl-item"><div class="tl-num">6</div><div class="tl-card glass"><span class="tl-badge">Prometheus + Grafana</span><div class="tl-title">Live Monitoring Active</div><div class="tl-desc">Prometheus scrapes JVM metrics every 15s. Grafana displays real-time dashboard.</div></div></div>
+  </section>
+
+  <!-- ========== LIVE METRICS MOCKUP ========== -->
+  <section class="metrics-section" id="metrics">
+    <h2>Live Observability</h2>
+    <div class="metrics-grid">
+      <div class="metric-card glass" data-tilt>
+        <h3><span class="dot"></span> Pipeline Status</h3>
+        <div class="mini-pipeline">
+          <span class="mp-node">Push</span><span class="mp-arrow">→</span>
+          <span class="mp-node">Build</span><span class="mp-arrow">→</span>
+          <span class="mp-node">Test</span><span class="mp-arrow">→</span>
+          <span class="mp-node">Deploy</span><span class="mp-arrow">→</span>
+          <span class="mp-node">Live ✓</span>
+        </div>
+      </div>
+      <div class="metric-card glass" data-tilt>
+        <h3><span class="dot"></span> Test Results</h3>
+        <ul class="check-list">
+          <li>getAllStudents_shouldReturn200</li>
+          <li>getAllStudents_shouldReturnList</li>
+          <li>healthEndpoint_shouldBeUp</li>
+        </ul>
+      </div>
+      <div class="metric-card glass" data-tilt>
+        <h3><span class="dot"></span> System Health</h3>
+        <canvas id="healthChart"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TECH STACK ========== -->
+  <section class="stack-section" id="stack">
+    <h2>Technology Stack</h2>
+    <div class="stack-grid">
+      <div class="stack-card glass"><div class="icon">🐳</div><div class="tool-name">Docker</div><div class="tool-role">Containerization Platform</div></div>
+      <div class="stack-card glass"><div class="icon">⚙️</div><div class="tool-name">Maven</div><div class="tool-role">Build & Dependency Manager</div></div>
+      <div class="stack-card glass"><div class="icon">⚡</div><div class="tool-name">GitHub Actions</div><div class="tool-role">Cloud CI Runner</div></div>
+      <div class="stack-card glass"><div class="icon">🔧</div><div class="tool-name">Jenkins</div><div class="tool-role">CD Pipeline Server</div></div>
+      <div class="stack-card glass"><div class="icon">📊</div><div class="tool-name">Prometheus</div><div class="tool-role">Metrics Collector</div></div>
+      <div class="stack-card glass"><div class="icon">📈</div><div class="tool-name">Grafana</div><div class="tool-role">Dashboard Visualization</div></div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="footer-title">CloudPulse · INT332 DevOps Project</div>
+    <div class="footer-tools">Built with Docker · Maven · GitHub Actions · Jenkins · Prometheus · Grafana</div>
+    <div class="status"><span class="dot"></span> All systems operational</div>
+  </footer>
+
+  <!-- Three.js from CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
