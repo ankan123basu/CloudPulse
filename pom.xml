@@ -41,6 +41,12 @@
       <artifactId>micrometer-registry-prometheus</artifactId>
     </dependency>
 
+    <!-- Spring Data MongoDB for persistent storage -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-mongodb</artifactId>
+    </dependency>
+
     <!-- Spring Boot Test + JUnit 5 -->
     <dependency>
       <groupId>org.springframework.boot</groupId>

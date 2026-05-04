@@ -1,517 +1,416 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/Spring%20Boot-3.2.0-6DB33F?style=for-the-badge&logo=springboot&logoColor=white" />
-  <img src="https://img.shields.io/badge/Docker-Containerized-2496ED?style=for-the-badge&logo=docker&logoColor=white" />
-  <img src="https://img.shields.io/badge/GitHub%20Actions-CI-2088FF?style=for-the-badge&logo=githubactions&logoColor=white" />
-  <img src="https://img.shields.io/badge/Jenkins-CD-D24939?style=for-the-badge&logo=jenkins&logoColor=white" />
-  <img src="https://img.shields.io/badge/Prometheus-Monitoring-E6522C?style=for-the-badge&logo=prometheus&logoColor=white" />
-  <img src="https://img.shields.io/badge/Grafana-Dashboard-F46800?style=for-the-badge&logo=grafana&logoColor=white" />
-  <img src="https://img.shields.io/badge/JUnit%205-Testing-25A162?style=for-the-badge&logo=junit5&logoColor=white" />
-  <img src="https://img.shields.io/badge/Maven-Build-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white" />
+  <img src="https://img.shields.io/badge/Spring%20Boot-3.2-6DB33F?style=for-the-badge&logo=spring-boot" />
+  <img src="https://img.shields.io/badge/MongoDB-7.0-47A248?style=for-the-badge&logo=mongodb" />
+  <img src="https://img.shields.io/badge/Docker-Compose-2496ED?style=for-the-badge&logo=docker" />
+  <img src="https://img.shields.io/badge/Prometheus-Monitoring-E6522C?style=for-the-badge&logo=prometheus" />
+  <img src="https://img.shields.io/badge/Grafana-Dashboard-F46800?style=for-the-badge&logo=grafana" />
+  <img src="https://img.shields.io/badge/Jenkins-CI%2FCD-D24939?style=for-the-badge&logo=jenkins" />
+  <img src="https://img.shields.io/badge/GitHub%20Actions-CI-2088FF?style=for-the-badge&logo=github-actions" />
+  <img src="https://img.shields.io/badge/Three.js-3D%20UI-000000?style=for-the-badge&logo=three.js" />
 </p>
 
-<h1 align="center">☁️ CloudPulse</h1>
-<h3 align="center">Automated Full-Stack DevOps Pipeline with Live Observability</h3>
+# ☁️ CloudPulse — Intelligent Task Orchestration Platform
 
-<p align="center">
-  <i>A complete CI/CD pipeline using Docker, Maven, GitHub Actions, Jenkins, Prometheus & Grafana with JUnit Testing — Everything runs in Docker.</i>
-</p>
+> **Real-time task scheduling with automated conflict detection, priority-based resolution, and full-stack observability — deployed via an industry-grade CI/CD pipeline.**
 
-<p align="center">
-  <b>Submitted in partial fulfillment of INT332 — DevOps Engineering</b>
-</p>
+CloudPulse is a production-ready, full-stack Java application that enables users — students, teachers, teams, and organizations — to schedule tasks across shared resources, automatically detect scheduling conflicts in real-time, and resolve them using priority-based algorithms. All operations are persisted in **MongoDB**, monitored via **Prometheus + Grafana**, and deployed through a fully automated **Docker + GitHub Actions + Jenkins** pipeline.
 
 ---
 
-## 📋 Table of Contents
+## 📑 Table of Contents
 
-- [Abstract](#-abstract)
+- [Features](#-features)
 - [Architecture](#-architecture)
-- [Tools & Technologies](#-tools--technologies)
+- [Tech Stack](#-tech-stack)
 - [Project Structure](#-project-structure)
-- [Application Endpoints](#-application-endpoints)
-- [CI/CD Pipeline Flow](#-cicd-pipeline-flow)
+- [Getting Started](#-getting-started)
+- [API Reference](#-api-reference)
+- [CI/CD Pipeline](#-cicd-pipeline)
 - [Monitoring & Observability](#-monitoring--observability)
-- [Automated Testing](#-automated-testing)
-- [Setup & Commands](#-setup--commands)
-- [Service URLs](#-service-urls)
+- [Testing](#-testing)
 - [Screenshots](#-screenshots)
-- [Scope & Future Work](#-scope--future-work)
-- [Key Viva Q&A](#-key-viva-qa)
+- [Scope & Future Enhancements](#-scope--future-enhancements)
 
 ---
 
-## 📖 Abstract
+## ✨ Features
 
-**CloudPulse** is a production-grade DevOps project that demonstrates the complete software delivery lifecycle — from writing code to automated deployment and real-time monitoring. The project builds a **Java Spring Boot REST API** (a Student Record Manager) and surrounds it with a fully automated CI/CD pipeline using industry-standard tools.
+### Core Scheduling Engine
+- **Task CRUD** — Create, read, update, delete tasks with title, description, assignee, resource, time window, and priority
+- **Dual Conflict Detection** — Detects TWO types of conflicts automatically:
+  - 🔴 **Resource Conflict** — Same resource, overlapping time (e.g., two tasks on SERVER-01 at the same time)
+  - 🔴 **Assignee Conflict** — Same person, overlapping time (e.g., "ankan" has two tasks at once, even on different resources)
+- **Smart Free-Slot Resolution** — Auto-resolve scans ALL existing tasks to find the next time slot where BOTH the resource AND assignee are free. Higher priority keeps its slot; lower priority gets intelligently rescheduled
+- **Resource Management** — Tasks are grouped by resource (servers, rooms, labs) for easy management
 
-Every tool in this pipeline runs as a **Docker container** — no manual software installation is required beyond Docker Desktop itself. The pipeline is triggered automatically on every `git push`, runs unit tests, builds a Docker image, pushes it to Docker Hub, and monitors the running application with live JVM metrics.
+### Real-Time Persistence
+- **MongoDB Integration** — All tasks stored in MongoDB; data persists across container restarts
+- **Live Updates** — UI auto-refreshes every 5 seconds; changes reflect instantly across browser tabs
 
-> **Why is the application simple?** The application is intentionally minimal because the focus of this project is the **DevOps pipeline layer**, not business logic. In a real company, you swap the application — the pipeline stays identical. That's the entire point of DevOps.
+### 3D Immersive UI
+- **Three.js Background** — Animated starfield (1800 particles), floating icosahedron nodes, traveling connector particles, pulsing ring geometry
+- **Glassmorphism Design** — Frosted glass panels, gradient buttons, smooth transitions
+- **Toast Notifications** — Slide-in alerts on task creation, conflict detection, resolution, and deletion
+- **4-Tab Interface** — All Tasks (with search/filter), Conflicts, Resources, Timeline
+
+### DevOps & Observability
+- **Docker Compose** — 5 containers (App, MongoDB, Prometheus, Grafana, Jenkins) orchestrated with one command
+- **GitHub Actions CI** — Automated build + test on every push (5 JUnit tests)
+- **Jenkins CD** — Automated deployment pipeline
+- **Prometheus Metrics** — Custom business metrics (tasks created, conflicts detected/resolved, active tasks) + JVM metrics
+- **Grafana Dashboard** — 35+ panels across 5 sections with real-time data visualization
 
 ---
 
-## 🏗️ Architecture
+## 🏗 Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                        DEVELOPER WORKSTATION                     │
-│                                                                  │
-│  git push ──► GitHub Repository (ankan123basu/CloudPulse)        │
-│                        │                                         │
-│                        ▼                                         │
-│  ┌──────────────────────────────────┐                            │
-│  │      GITHUB ACTIONS (CI)         │                            │
-│  │  ┌────────────┐  ┌────────────┐  │                            │
-│  │  │ Build &    │  │ Docker     │  │                            │
-│  │  │ Test       │──│ Build &    │  │                            │
-│  │  │ (Maven +   │  │ Push       │  │                            │
-│  │  │ JUnit 5)   │  │ (Hub)      │  │                            │
-│  │  └────────────┘  └────────────┘  │                            │
-│  └──────────────────────────────────┘                            │
-│                        │                                         │
-│                        ▼                                         │
-│  ┌──────────────────────────────────────────────────────────┐    │
-│  │              DOCKER COMPOSE (4 Containers)                │    │
-│  │                                                           │    │
-│  │  ┌─────────────┐  ┌──────────┐  ┌────────────────────┐   │    │
-│  │  │ CloudPulse  │  │Prometheus│  │     Grafana        │   │    │
-│  │  │ Spring Boot │◄─│ Scrapes  │──│  Live Dashboard    │   │    │
-│  │  │ App :8081   │  │ :9090    │  │  :3000             │   │    │
-│  │  └─────────────┘  └──────────┘  └────────────────────┘   │    │
-│  │  ┌─────────────┐                                          │    │
-│  │  │  Jenkins    │  (Self-hosted CD — ready for webhook)    │    │
-│  │  │  :8090      │                                          │    │
-│  │  └─────────────┘                                          │    │
-│  └──────────────────────────────────────────────────────────┘    │
-└─────────────────────────────────────────────────────────────────┘
+│                        USER (Browser)                           │
+│                                                                 │
+│   ┌──────────────────────────────────────────────────────┐      │
+│   │  3D Landing Page (Three.js + Glassmorphism UI)       │      │
+│   │  index.html / styles.css / script.js                 │      │
+│   └──────────────────────┬───────────────────────────────┘      │
+│                          │ REST API calls                        │
+└──────────────────────────┼──────────────────────────────────────┘
+                           │
+┌──────────────────────────┼──────────────────────────────────────┐
+│                    DOCKER COMPOSE                                │
+│                          │                                       │
+│   ┌──────────────────────▼───────────────────────────────┐      │
+│   │  Spring Boot Application (port 8080)                  │      │
+│   │  ├── TaskController (8 REST endpoints)                │      │
+│   │  ├── ConflictDetectionService (overlap scanner)       │      │
+│   │  ├── ConflictResolutionEngine (priority resolver)     │      │
+│   │  ├── MetricsService (Prometheus counters/gauges)      │      │
+│   │  └── Static UI served from /resources/static/         │      │
+│   └───────┬──────────────┬───────────────────────────────┘      │
+│           │              │                                       │
+│   ┌───────▼──────┐ ┌────▼─────────────┐                        │
+│   │  MongoDB 7   │ │  Prometheus      │                        │
+│   │  port 27018  │ │  port 9090       │                        │
+│   │  cloudpulse  │ │  scrapes /actuator│                       │
+│   │  database    │ │  /prometheus      │                        │
+│   └──────────────┘ └────┬─────────────┘                        │
+│                         │                                        │
+│                    ┌────▼─────────────┐  ┌──────────────┐       │
+│                    │  Grafana         │  │  Jenkins     │       │
+│                    │  port 3000       │  │  port 8090   │       │
+│                    │  35+ panels      │  │  CD pipeline │       │
+│                    └──────────────────┘  └──────────────┘       │
+└──────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 🛠️ Tools & Technologies
+## 🛠 Tech Stack
 
-| Category | Tool | Version | Purpose |
-|----------|------|---------|---------|
-| **Language** | Java | 17 | Application runtime |
-| **Framework** | Spring Boot | 3.2.0 | REST API framework |
-| **Build Tool** | Apache Maven | 3.9.x | Dependency management & build automation |
-| **Testing** | JUnit 5 + MockMvc | 5.10.1 | Unit testing & HTTP endpoint validation |
-| **Containerization** | Docker | Latest | Application packaging & isolation |
-| **Orchestration** | Docker Compose | v2 | Multi-container management |
-| **CI (Cloud)** | GitHub Actions | v4 | Automated build, test & image push |
-| **CD (Self-hosted)** | Jenkins | LTS | Continuous deployment pipeline |
-| **Metrics Collection** | Prometheus | Latest | Time-series metric scraping (every 15s) |
-| **Visualization** | Grafana | Latest | Real-time dashboards with 20+ panels |
-| **Metrics Library** | Micrometer | 1.12.x | JVM metrics instrumentation |
-| **Actuator** | Spring Boot Actuator | 3.2.0 | Health checks & metrics endpoints |
-| **Registry** | Docker Hub | - | Container image registry |
-| **VCS** | Git + GitHub | - | Version control & collaboration |
+| Layer | Technology | Purpose |
+|-------|-----------|---------|
+| **Backend** | Java 17, Spring Boot 3.2 | REST API, business logic, conflict engine |
+| **Database** | MongoDB 7 | Persistent task storage (auto-created) |
+| **Frontend** | HTML5, CSS3, JavaScript, Three.js | 3D immersive task scheduler UI |
+| **Monitoring** | Prometheus | Metrics scraping (JVM + business metrics) |
+| **Visualization** | Grafana | 35+ real-time dashboard panels |
+| **Containerization** | Docker, Docker Compose | Multi-container orchestration |
+| **CI** | GitHub Actions | Automated build + Maven test on push |
+| **CD** | Jenkins | Automated deployment pipeline |
+| **Testing** | JUnit 5 | 5 unit tests for core logic |
+| **Metrics** | Micrometer + Prometheus Registry | Custom counters and gauges |
 
 ---
 
-## 📁 Project Structure
+## 📂 Project Structure
 
 ```
 CloudPulse/
-├── .github/
-│   └── workflows/
-│       └── ci.yml                          ← GitHub Actions CI pipeline (2 jobs)
-├── src/
-│   ├── main/
-│   │   ├── java/com/cloudpulse/
-│   │   │   ├── CloudPulseApplication.java  ← @SpringBootApplication entry point
-│   │   │   ├── Student.java               ← POJO model (id, name, course)
-│   │   │   └── StudentController.java     ← REST controller (GET, POST endpoints)
-│   │   └── resources/
-│   │       └── application.properties      ← Actuator + Prometheus config
-│   └── test/
-│       └── java/com/cloudpulse/
-│           └── StudentControllerTest.java  ← 3 JUnit 5 tests with MockMvc
+├── src/main/java/com/cloudpulse/
+│   ├── CloudPulseApplication.java      # Spring Boot entry point
+│   ├── Task.java                       # @Document entity (MongoDB)
+│   ├── Priority.java                   # HIGH, MEDIUM, LOW enum
+│   ├── TaskStatus.java                 # SCHEDULED, CONFLICT, RESOLVED, RUNNING, DONE
+│   ├── TaskRepository.java             # MongoRepository interface
+│   ├── TaskController.java             # 8 REST endpoints
+│   ├── ConflictDetectionService.java   # Time-window overlap scanner
+│   ├── ConflictResolutionEngine.java   # Priority-based auto-rescheduler
+│   ├── MetricsService.java             # Custom Prometheus business metrics
+│   ├── DataInitializer.java            # Startup logger
+│   └── WebConfig.java                  # CORS configuration
+│
+├── src/main/resources/
+│   ├── application.properties          # App + MongoDB + Actuator config
+│   └── static/                         # UI served by Spring Boot
+│       ├── index.html
+│       ├── styles.css
+│       └── script.js
+│
+├── src/test/java/com/cloudpulse/
+│   └── TaskControllerTest.java         # 5 JUnit 5 unit tests
+│
+├── landing/                            # Source landing page files
+│   ├── index.html
+│   ├── styles.css
+│   └── script.js
+│
 ├── grafana/
 │   ├── dashboards/
-│   │   ├── jvm-micrometer.json            ← Standard JVM dashboard (ID: 4701)
-│   │   └── cloudpulse-custom.json         ← Custom 20+ panel dashboard
+│   │   └── cloudpulse-custom.json      # 35+ panel Grafana dashboard
 │   └── provisioning/
-│       ├── dashboards/
-│       │   └── dashboard.yml              ← Auto-load dashboards on startup
-│       └── datasources/
-│           └── datasource.yml             ← Auto-configure Prometheus source
-├── landing/
-│   ├── index.html                         ← 3D landing page (Three.js)
-│   ├── styles.css                         ← Glassmorphism + animations
-│   └── script.js                          ← Three.js starfield + parallax
-├── .dockerignore                          ← Docker build exclusions
-├── .gitignore                             ← Git exclusions
-├── Dockerfile                             ← Multi-stage Docker build
-├── Jenkinsfile                            ← Jenkins CD pipeline definition
-├── README.md                              ← This file
-├── docker-compose.yml                     ← 4-service orchestration
-├── pom.xml                                ← Maven build configuration
-└── prometheus.yml                         ← Prometheus scrape config
+│       ├── dashboards/dashboard.yml
+│       └── datasources/datasource.yml
+│
+├── .github/workflows/ci.yml           # GitHub Actions CI pipeline
+├── docker-compose.yml                  # 5-container orchestration
+├── Dockerfile                          # Multi-stage Java build
+├── prometheus.yml                      # Prometheus scrape config
+├── Jenkinsfile                         # Jenkins CD pipeline
+├── pom.xml                             # Maven dependencies
+└── README.md                           # This file
 ```
 
 ---
 
-## 🌐 Application Endpoints
+## 🚀 Getting Started
 
-### REST API (Student Record Manager)
+### Prerequisites
+- **Docker Desktop** installed and running
+- **Git** installed
+- Port 8081, 27018, 9090, 3000, 8090 available
 
-| Method | Endpoint | Description | Example Response |
-|--------|----------|-------------|-----------------|
-| `GET` | `/students` | Get all students | `[{"id":1,"name":"Ankan","course":"CSE"}, ...]` |
-| `GET` | `/students/{id}` | Get student by ID | `{"id":1,"name":"Ankan","course":"CSE"}` |
-| `POST` | `/students` | Add new student | Returns added student JSON |
+### Quick Start (One Command)
 
-### Actuator Endpoints (Monitoring)
+```bash
+# Clone the repository
+git clone https://github.com/YOUR_USERNAME/CloudPulse.git
+cd CloudPulse
 
-| Endpoint | Description |
-|----------|-------------|
-| `/actuator/health` | Application health status (UP/DOWN) |
-| `/actuator/prometheus` | Raw Prometheus metrics (JVM, HTTP, system) |
-| `/actuator/metrics` | List of all available metric names |
-| `/actuator/info` | Application info |
+# Start everything (app + MongoDB + Prometheus + Grafana + Jenkins)
+docker-compose up -d --build
+```
+
+Wait ~2-3 minutes for the build to complete. Then open:
+
+| Service | URL | Credentials |
+|---------|-----|-------------|
+| **CloudPulse UI** | http://localhost:8081 | — |
+| **REST API** | http://localhost:8081/api/tasks | — |
+| **MongoDB** | mongodb://localhost:27018 | — |
+| **Prometheus** | http://localhost:9090 | — |
+| **Grafana** | http://localhost:3000 | admin / admin |
+| **Jenkins** | http://localhost:8090 | (setup wizard) |
+
+### Stop Everything
+
+```bash
+docker-compose down       # Stop containers (data persists)
+docker-compose down -v    # Stop + delete all data
+```
 
 ---
 
-## 🔄 CI/CD Pipeline Flow
+## 📡 API Reference
 
-### GitHub Actions — Continuous Integration (`.github/workflows/ci.yml`)
+All endpoints are prefixed with `/api/tasks`.
 
-The CI pipeline triggers **automatically on every `git push` to `main`** and runs 2 jobs:
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/api/tasks` | List all tasks |
+| `GET` | `/api/tasks/{id}` | Get single task by ID |
+| `POST` | `/api/tasks` | Create task (auto-detects conflicts) |
+| `PUT` | `/api/tasks/{id}` | Update task (status, title, assignee) |
+| `DELETE` | `/api/tasks/{id}` | Delete a task |
+| `GET` | `/api/tasks/conflicts` | List all conflicting tasks |
+| `POST` | `/api/tasks/resolve/{id}` | Auto-resolve a conflict |
+| `GET` | `/api/tasks/stats` | Platform statistics |
 
-```
-Job 1: build-and-test
-  ├── Checkout code
-  ├── Setup JDK 17
-  ├── Run: mvn clean test        ← Executes 3 JUnit 5 tests
-  └── Run: mvn package           ← Builds cloudpulse-1.0.0.jar
+### Example: Create a Task
 
-Job 2: docker-build-push (runs only if Job 1 passes)
-  ├── Checkout code
-  ├── Login to Docker Hub        ← Uses DOCKER_USERNAME & DOCKER_PASSWORD secrets
-  ├── Run: docker build           ← Multi-stage Dockerfile
-  └── Run: docker push            ← Pushes to ankan0210/cloudpulse:latest
-```
-
-### Jenkins — Continuous Deployment (`Jenkinsfile`)
-
-Jenkins is configured for self-hosted CD with a 4-stage pipeline:
-
-```
-Stage 1: Checkout       ← Pulls from GitHub (ankan123basu/CloudPulse)
-Stage 2: Build          ← mvn clean package -DskipTests
-Stage 3: Docker Build   ← docker build -t ankan0210/cloudpulse
-Stage 4: Deploy         ← docker push + docker run
-```
-
-### Dockerfile — Multi-Stage Build
-
-```dockerfile
-# Stage 1: Build with Maven (full JDK + dependencies)
-FROM maven:3.9.5-eclipse-temurin-17 AS build
-COPY pom.xml .
-COPY src ./src
-RUN mvn clean package -DskipTests
-
-# Stage 2: Run with minimal JRE (lightweight, secure)
-FROM eclipse-temurin:17-jre-alpine
-COPY --from=build /app/target/cloudpulse-1.0.0.jar app.jar
-HEALTHCHECK CMD curl -f http://localhost:8080/actuator/health
-ENTRYPOINT ["java", "-jar", "app.jar"]
+```bash
+curl -X POST http://localhost:8081/api/tasks \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Database Backup",
+    "description": "Full backup of production DB",
+    "assignee": "ops-team",
+    "resourceTag": "DB-CLUSTER",
+    "startTime": "2026-05-05T10:00:00",
+    "endTime": "2026-05-05T12:00:00",
+    "priority": "HIGH"
+  }'
 ```
 
-**Why multi-stage?** The build stage uses ~800MB (Maven + JDK). The runtime stage uses ~200MB (JRE only). This reduces attack surface and image size by 75%.
+### Response (Conflict Detected):
+```json
+{
+  "id": "664e3f...",
+  "title": "Database Backup",
+  "status": "CONFLICT",
+  "conflictsDetected": 1,
+  "message": "⚠️ Task created with 1 conflict(s). Use /resolve/664e3f... to auto-resolve."
+}
+```
+
+---
+
+## 🔄 CI/CD Pipeline
+
+```
+git push → GitHub Actions (build + test) → Docker Hub (image) → Jenkins (deploy) → Live
+```
+
+### GitHub Actions (CI)
+- **Trigger:** Every `git push` to `main`
+- **Steps:** Checkout → Setup JDK 17 → Maven build → Run 5 JUnit tests → Docker build + push
+- **Config:** `.github/workflows/ci.yml`
+
+### Jenkins (CD)
+- **Trigger:** Webhook from GitHub or manual
+- **Steps:** Pull latest image → Deploy via Docker Compose
+- **Config:** `Jenkinsfile`
 
 ---
 
 ## 📊 Monitoring & Observability
 
-### How It Works
+### Prometheus Metrics
 
-```
-Spring Boot App                  Prometheus                    Grafana
-    │                                │                            │
-    │  /actuator/prometheus          │                            │
-    │  (exposes 100+ JVM metrics)    │                            │
-    │◄───────────────────────────────│  scrapes every 15 seconds  │
-    │                                │                            │
-    │                                │  stores time-series data   │
-    │                                │────────────────────────────►│
-    │                                │                            │  renders 20+ panels
-    │                                │                            │  in real-time
-```
-
-### Prometheus Configuration (`prometheus.yml`)
-
-```yaml
-global:
-  scrape_interval: 15s              # Scrape metrics every 15 seconds
-
-scrape_configs:
-  - job_name: 'cloudpulse-app'
-    metrics_path: '/actuator/prometheus'
-    honor_labels: true
-    static_configs:
-      - targets: ['app:8080']       # Docker internal DNS
-```
-
-### Grafana Dashboards
-
-**Two dashboards are auto-provisioned on startup:**
-
-1. **JVM (Micrometer)** — Standard dashboard (ID: 4701) with JVM internals
-2. **CloudPulse — Live DevOps Dashboard** — Custom dashboard with 20+ panels:
-   - 🟢 Application Status (ONLINE/DOWN indicator)
-   - ⏱️ Uptime counter with color thresholds
-   - 🧠 Heap Memory gauge (green→yellow→red)
-   - ⚡ CPU Usage gauge with continuous color
-   - 💾 Disk Usage gauge
-   - 🧵 Thread bar gauges & donut chart
-   - 📈 Real-time heap memory trends (smooth gradient lines)
-   - 📊 CPU utilization with threshold zones
-   - 🌐 HTTP endpoint performance tracking
-   - 🗑️ Garbage collection activity bars
-   - 📦 Class loading trends
-   - 📡 Tomcat session monitoring
-
-### Key Metrics Tracked
-
+**Custom Business Metrics** (scraped from `/actuator/prometheus`):
 | Metric | Type | Description |
 |--------|------|-------------|
-| `jvm_memory_used_bytes` | Gauge | Current heap/non-heap memory usage |
-| `jvm_memory_max_bytes` | Gauge | Maximum memory pool size |
-| `process_cpu_usage` | Gauge | JVM process CPU utilization (0-1) |
-| `system_cpu_usage` | Gauge | Total system CPU utilization |
-| `jvm_threads_live_threads` | Gauge | Current live thread count |
-| `jvm_threads_states_threads` | Gauge | Threads by state (runnable, waiting, etc.) |
-| `http_server_requests_seconds` | Summary | HTTP request count, duration, errors |
-| `jvm_gc_pause_seconds` | Summary | GC pause time and frequency |
-| `disk_free_bytes` | Gauge | Available disk space |
-| `process_uptime_seconds` | Gauge | Application uptime in seconds |
-| `jvm_classes_loaded_classes` | Gauge | Number of loaded Java classes |
+| `cloudpulse_tasks_created_total` | Counter | Total tasks created |
+| `cloudpulse_conflicts_detected_total` | Counter | Total conflicts detected |
+| `cloudpulse_conflicts_resolved_total` | Counter | Total conflicts auto-resolved |
+| `cloudpulse_active_tasks` | Gauge | Current active (non-DONE) tasks |
+
+**JVM Metrics** (auto-exposed by Spring Boot Actuator):
+- Heap/Non-Heap memory, GC pauses, thread counts, CPU usage, class loading, HTTP request rates
+
+### Grafana Dashboard (35+ Panels)
+
+| Section | Panels |
+|---------|--------|
+| 🚀 Business Metrics | App Status, Uptime, Tasks Created, Conflicts, Resolved, Resolution Rate Gauge, Active Tasks, Heap Gauge, CPU Gauge, Thread Bar Chart, HTTP req/s, Latency, Classes, Open Files |
+| 📈 Real-Time Performance | Task Activity Over Time, JVM Heap Memory, CPU & System Load, HTTP Endpoint Performance |
+| 🗄️ JVM Internals | Thread Monitoring, Thread State Donut, GC & Class Loading |
+| 🔥 Advanced Observability | Task Creation Rate (bars), Conflict vs Resolution Rate, HTTP Status Breakdown, Memory Pools (stacked), GC Activity, Request Duration by Endpoint, Memory Pie Chart, Buffer Pool |
+| 🏗️ System & Disk | Disk Usage Gauge, Total Requests, 5xx Errors, CPU Cores, Stacked CPU Breakdown, Uptime Trend |
 
 ---
 
-## 🧪 Automated Testing
+## 🧪 Testing
 
-### JUnit 5 Test Suite (`StudentControllerTest.java`)
-
-3 tests run automatically in GitHub Actions on every push:
-
-```java
-@Test void shouldReturnStudentList()
-// Verifies GET /students returns HTTP 200 and valid JSON array
-
-@Test void shouldReturnJsonContentType()
-// Verifies response Content-Type is application/json
-
-@Test void healthEndpointShouldReturn200()
-// Verifies GET /actuator/health returns HTTP 200 (app is alive)
-```
-
-### Test Execution
-
-Tests are executed in two places:
-1. **GitHub Actions** — `mvn clean test` in the `build-and-test` job
-2. **Docker Build** — `mvn clean package` compiles and validates code
-
-```
-[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0
-[INFO] BUILD SUCCESS
-```
-
----
-
-## ⚙️ Setup & Commands
-
-### Prerequisites
-
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running
-- Git installed
-
-### Step 1 — Clone the Repository
+### Unit Tests (5 tests)
 
 ```bash
-git clone https://github.com/ankan123basu/CloudPulse.git
-cd CloudPulse
+mvn test
 ```
 
-### Step 2 — Start All Services (One Command)
-
-```bash
-docker-compose up -d
-```
-
-This single command:
-- Builds the Spring Boot app using the multi-stage Dockerfile
-- Downloads and starts Prometheus, Grafana, and Jenkins containers
-- Creates a shared Docker bridge network
-- Auto-provisions Grafana data sources and dashboards
-
-### Step 3 — Verify Everything is Running
-
-```bash
-docker ps
-```
-
-Expected output:
-```
-CONTAINER ID   IMAGE              STATUS                    PORTS
-xxxxxxxxxxxx   cloudpulse-app     Up X minutes (healthy)    0.0.0.0:8081->8080/tcp
-xxxxxxxxxxxx   prom/prometheus    Up X minutes              0.0.0.0:9090->9090/tcp
-xxxxxxxxxxxx   grafana/grafana    Up X minutes              0.0.0.0:3000->3000/tcp
-xxxxxxxxxxxx   jenkins/jenkins    Up X minutes              0.0.0.0:8090->8080/tcp
-```
-
-### Step 4 — Test the API
-
-```bash
-curl http://localhost:8081/students
-curl http://localhost:8081/actuator/health
-curl http://localhost:8081/actuator/prometheus
-```
-
-### Step 5 — View Grafana Dashboard
-
-Open http://localhost:3000 → Login: `admin` / `admin` → Navigate to "CloudPulse — Live DevOps Dashboard"
-
-### Useful Docker Commands
-
-| Command | Description |
-|---------|-------------|
-| `docker-compose up -d` | Start all 4 containers |
-| `docker-compose down` | Stop and remove all containers |
-| `docker-compose up -d --build` | Rebuild app and restart |
-| `docker ps` | List running containers |
-| `docker logs cloudpulse-app` | View app logs |
-| `docker logs cloudpulse-prometheus` | View Prometheus logs |
-| `docker restart cloudpulse-grafana` | Restart Grafana |
-| `docker exec cloudpulse-jenkins cat /var/jenkins_home/secrets/initialAdminPassword` | Get Jenkins initial password |
-
----
-
-## 🔗 Service URLs
-
-| Service | URL | Credentials |
-|---------|-----|-------------|
-| **Spring Boot API** | http://localhost:8081/students | — |
-| **Health Check** | http://localhost:8081/actuator/health | — |
-| **Prometheus Metrics** | http://localhost:8081/actuator/prometheus | — |
-| **Prometheus UI** | http://localhost:9090 | — |
-| **Prometheus Targets** | http://localhost:9090/targets | — |
-| **Grafana Dashboard** | http://localhost:3000 | admin / admin |
-| **Jenkins** | http://localhost:8090 | (initial setup required) |
-| **Landing Page** | Open `landing/index.html` in browser | — |
+| Test | What it validates |
+|------|------------------|
+| `testTaskDefaultStatus` | New tasks default to SCHEDULED status |
+| `testOverlapDetection` | Overlapping time windows are detected |
+| `testNoOverlap` | Non-overlapping tasks pass cleanly |
+| `testPriorityOrdering` | HIGH < MEDIUM < LOW ordinal ordering |
+| `testStatusLifecycle` | SCHEDULED → CONFLICT → RESOLVED → DONE |
 
 ---
 
 ## 📸 Screenshots
 
-### 1. GitHub Actions — CI Pipeline (Green ✅)
-> GitHub automatically runs `mvn clean test` (3 JUnit tests) and `docker build & push` on every commit.
+> Add your screenshots here after running the application.
 
-![GitHub Actions](screenshots/github-actions.png)
-
-### 2. Docker Containers — All Running
-> 4 containers orchestrated via Docker Compose on a shared bridge network.
-
-![Docker PS](screenshots/docker-ps.png)
-
-### 3. REST API Response
-> GET /students returns JSON array of student records.
-
-![API Response](screenshots/api-response.png)
-
-### 4. Prometheus Targets — Scraping Active
-> Prometheus scrapes JVM metrics from the Spring Boot app every 15 seconds.
-
-![Prometheus Targets](screenshots/prometheus-targets.png)
-
-### 5. Grafana — Live DevOps Dashboard
-> Custom 20+ panel dashboard showing real-time JVM metrics with gauges, graphs, and charts.
-
-![Grafana Dashboard](screenshots/grafana-dashboard.png)
-
-### 6. Grafana — JVM Micrometer Dashboard
-> Industry-standard JVM monitoring dashboard (ID: 4701) with heap, CPU, threads, and GC.
-
-![JVM Dashboard](screenshots/jvm-dashboard.png)
-
-### 7. Landing Page — 3D Interactive
-> Three.js powered landing page with starfield, glassmorphism, and parallax effects.
-
-![Landing Page](screenshots/landing-page.png)
+| Screenshot | Description |
+|-----------|-------------|
+| UI - Empty State | Landing page with 3D background, empty task list |
+| UI - Task Created | Task card with priority badge and time slot |
+| UI - Conflict Detected | Warning banner, red CONFLICT badges |
+| UI - Auto-Resolved | Blue RESOLVED badges with rescheduling note |
+| UI - Resources Tab | Tasks grouped by resource |
+| UI - Timeline Tab | Sorted timeline of active tasks |
+| MongoDB Compass | Task documents in the `cloudpulse.tasks` collection |
+| Prometheus | Custom metrics query results |
+| Grafana | 35+ panel dashboard with live data |
+| Docker | All 5 containers running |
+| GitHub Actions | CI pipeline passing with 5 tests |
 
 ---
 
-## 🔮 Scope & Future Work
+## 🔮 Scope & Future Enhancements
 
 ### Current Scope
-- ✅ REST API with CRUD operations (GET all, GET by ID, POST)
-- ✅ Automated unit testing with JUnit 5 and MockMvc
-- ✅ Multi-stage Docker containerization with health checks
-- ✅ CI pipeline via GitHub Actions (build → test → docker push)
-- ✅ CD pipeline ready via Jenkins (Jenkinsfile configured)
-- ✅ Real-time monitoring with Prometheus (15s scrape interval)
-- ✅ Live visualization with Grafana (20+ panels, auto-provisioned)
-- ✅ Docker Compose orchestration (4 services, 1 command)
-- ✅ 3D interactive landing page (Three.js + glassmorphism)
+- Real-time task scheduling with CRUD operations
+- Dual conflict detection (resource overlap + assignee overlap)
+- Smart free-slot resolution — finds next available slot where both resource AND assignee are free
+- MongoDB persistence (data survives restarts)
+- Full CI/CD pipeline (GitHub Actions + Jenkins)
+- Live monitoring (Prometheus + 35-panel Grafana dashboard)
+- 3D immersive frontend (Three.js + glassmorphism)
 
 ### Future Enhancements
-- 🔄 **Database Integration** — Replace in-memory storage with PostgreSQL/MySQL
-- 🔐 **Security** — Add Spring Security with JWT authentication
-- 📧 **Alerting** — Configure Prometheus AlertManager for email/Slack notifications
-- 🔀 **Blue-Green Deployment** — Zero-downtime deployment with Docker Swarm/K8s
-- 📝 **API Documentation** — Add Swagger/OpenAPI for auto-generated docs
-- 🧪 **Integration Tests** — Add end-to-end tests with Testcontainers
-- 📊 **Custom Metrics** — Track business metrics (students created, API errors)
-- 🌍 **Cloud Deployment** — Deploy to AWS ECS / Google Cloud Run
-- 🔁 **GitOps** — Implement ArgoCD for declarative deployment
+- **User Authentication** — JWT-based login for multi-tenant scheduling
+- **WebSocket Push** — Real-time push updates instead of polling
+- **Recurring Tasks** — Cron-based recurring schedule support
+- **Email Notifications** — Alert users when conflicts are detected
+- **Calendar View** — Drag-and-drop calendar UI
+- **Role-Based Access** — Admin, Manager, User roles
+- **Redis Caching** — Cache frequently accessed task lists
+- **Kubernetes Deployment** — Helm charts for K8s orchestration
 
 ---
 
-## 💡 Key Viva Q&A
+## 📜 Commands Reference
 
-**Q1: Why is the application so simple?**
-> The application is intentionally minimal. DevOps is about the pipeline, not business logic. In production, you swap the app — the pipeline stays identical.
+```bash
+# Build and start all services
+docker-compose up -d --build
 
-**Q2: What happens when you `git push`?**
-> GitHub Actions triggers automatically → runs 3 JUnit tests → builds JAR with Maven → creates Docker image → pushes to Docker Hub. Zero manual intervention.
+# View running containers
+docker ps
 
-**Q3: Why use both GitHub Actions and Jenkins?**
-> GitHub Actions handles cloud-based CI (test + build + push). Jenkins handles self-hosted CD (deploy). Companies use one or both depending on infrastructure needs.
+# View app logs
+docker logs cloudpulse-app -f
 
-**Q4: Why multi-stage Docker build?**
-> Stage 1 uses Maven (~800MB) to build. Stage 2 uses JRE Alpine (~200MB) to run. This reduces the final image size by 75% and minimizes attack surface.
+# View MongoDB data
+docker exec -it cloudpulse-mongo mongosh cloudpulse --eval "db.tasks.find().pretty()"
 
-**Q5: How does monitoring work?**
-> Spring Boot Actuator exposes 100+ JVM metrics at `/actuator/prometheus`. Prometheus scrapes this every 15 seconds. Grafana queries Prometheus to render real-time dashboards.
+# Stop all services
+docker-compose down
 
-**Q6: What does `docker-compose up -d` do?**
-> Starts 4 containers (App, Prometheus, Grafana, Jenkins) on a shared Docker network in detached mode. Grafana auto-provisions its data source and dashboards via mounted YAML files.
+# Stop and delete all data
+docker-compose down -v
 
-**Q7: Why Docker Compose instead of individual `docker run`?**
-> Compose manages multi-container apps as a single unit — networking, volumes, dependencies, and startup order are all defined in one `docker-compose.yml` file.
+# Run tests locally
+mvn test
 
-**Q8: What metrics are being tracked?**
-> JVM heap/non-heap memory, CPU usage, live threads, HTTP request rate/latency, garbage collection, disk usage, class loading — all via Micrometer + Spring Boot Actuator.
-
-**Q9: Are the Grafana graphs showing real data?**
-> Yes, 100% real. Every metric comes from the live running Spring Boot JVM. Hit the API endpoints and watch the HTTP graphs spike in real-time.
-
-**Q10: What is the role of Prometheus vs Grafana?**
-> Prometheus is the data engine — it collects and stores time-series metrics. Grafana is the visualization layer — it reads from Prometheus and renders beautiful dashboards. You need both.
+# Build JAR locally
+mvn clean package -DskipTests
+```
 
 ---
 
-## 👤 Author
+## 🤝 Tools Used
 
-**Ankan Basu**
-- GitHub: [@ankan123basu](https://github.com/ankan123basu)
-- Docker Hub: [ankan0210](https://hub.docker.com/u/ankan0210)
+| Tool | Version | Purpose |
+|------|---------|---------|
+| Java | 17 | Application language |
+| Spring Boot | 3.2.0 | Backend framework |
+| MongoDB | 7.x | Document database |
+| Docker | Latest | Containerization |
+| Docker Compose | 3.8 | Multi-container orchestration |
+| Prometheus | Latest | Metrics collection |
+| Grafana | Latest | Dashboard visualization |
+| Jenkins | LTS | Continuous deployment |
+| GitHub Actions | v4 | Continuous integration |
+| Maven | 3.x | Build & dependency management |
+| JUnit 5 | 5.x | Unit testing |
+| Micrometer | Latest | Metrics instrumentation |
+| Three.js | r128 | 3D WebGL rendering |
 
 ---
 
 <p align="center">
-  <b>Built with ❤️ for INT332 — DevOps Engineering</b>
+  Built with ☕ Java + 🍃 Spring Boot + 🐳 Docker + 📊 Prometheus + 📈 Grafana
+  <br>
+  <strong>CloudPulse</strong> — Intelligent Task Orchestration Platform
 </p>

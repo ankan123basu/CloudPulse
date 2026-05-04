@@ -9,11 +9,28 @@ services:
     container_name: cloudpulse-app
     ports:
       - "8081:8080"
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongo:27017/cloudpulse
+    depends_on:
+      - mongo
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
       interval: 30s
       timeout: 10s
       retries: 3
+    networks:
+      - cloudpulse-network
+
+  # =========================================
+  # MongoDB Database
+  # =========================================
+  mongo:
+    image: mongo:7
+    container_name: cloudpulse-mongo
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo_data:/data/db
     networks:
       - cloudpulse-network
 
@@ -67,6 +84,7 @@ services:
 volumes:
   jenkins_home:
   grafana_data:
+  mongo_data:
 
 networks:
   cloudpulse-network:

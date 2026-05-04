@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  const API_BASE = 'http://localhost:8081/api/tasks';
+  const API_BASE = '/api/tasks';
 
   // ─── THREE.JS ───
   const canvas = document.getElementById('bg-canvas');
