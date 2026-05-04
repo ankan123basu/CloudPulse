@@ -255,18 +255,20 @@ curl -X POST http://localhost:8081/api/tasks \
 
 ## 🔄 CI/CD Pipeline
 
-```
-git push → GitHub Actions (build + test) → Docker Hub (image) → Jenkins (deploy) → Live
+```text
+git push → GitHub Actions (Cloud CI) → Webhook → Jenkins (Local CD) → Live
 ```
 
-### GitHub Actions (CI)
+### GitHub Actions (Cloud CI)
 - **Trigger:** Every `git push` to `main`
-- **Steps:** Checkout → Setup JDK 17 → Maven build → Run 5 JUnit tests → Docker build + push
+- **Steps:** Checkout → Setup JDK 17 → Maven build → Run 5 JUnit tests
+- **Purpose:** Cloud-based gatekeeper to ensure code quality before deployment.
 - **Config:** `.github/workflows/ci.yml`
 
-### Jenkins (CD)
-- **Trigger:** Webhook from GitHub or manual
-- **Steps:** Pull latest image → Deploy via Docker Compose
+### Jenkins (Local CD)
+- **Trigger:** Manual trigger (or webhook) from GitHub
+- **Steps:** Checkout latest code → Compile & Test → Security Scan → Deploy App
+- **Purpose:** Securely deploy approved code to the production environment.
 - **Config:** `Jenkinsfile`
 
 ---
